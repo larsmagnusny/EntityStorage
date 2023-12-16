@@ -3,21 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityStorage.CLI", "EntityStorage\EntityStorage.CLI.csproj", "{1577F6EF-2176-49B4-8AE4-8C52740D9870}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityStorage.CLI", "EntityStorage\EntityStorage.CLI.csproj", "{1577F6EF-2176-49B4-8AE4-8C52740D9870}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityStorage.Abstractions", "EntityStorage.Abstractions\EntityStorage.Abstractions.csproj", "{7E300BB0-7214-4B9E-AD2A-4D670FD1BD36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityStorage.Abstractions", "EntityStorage.Abstractions\EntityStorage.Abstractions.csproj", "{7E300BB0-7214-4B9E-AD2A-4D670FD1BD36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityStorage.InMemory", "EntityStorage.InMemory\EntityStorage.InMemory.csproj", "{E423AD6F-A016-4633-A793-A87533D10E27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityStorage.InMemory", "EntityStorage.InMemory\EntityStorage.InMemory.csproj", "{E423AD6F-A016-4633-A793-A87533D10E27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityStorage.Serializers", "EntityStorage.Serializers\EntityStorage.Serializers.csproj", "{07DD9AA6-4F7D-4A20-B98C-DF9527F3A391}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityStorage.Serializers", "EntityStorage.Serializers\EntityStorage.Serializers.csproj", "{07DD9AA6-4F7D-4A20-B98C-DF9527F3A391}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityStorage.Collections", "EntityStorage.Collections\EntityStorage.Collections.csproj", "{E74A3DAC-B489-42E0-8C51-201598BDB215}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityStorage.Collections", "EntityStorage.Collections\EntityStorage.Collections.csproj", "{E74A3DAC-B489-42E0-8C51-201598BDB215}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityStorage.DependencyInjection", "EntityStorage.DependencyInjection\EntityStorage.DependencyInjection.csproj", "{9D4BE66E-FA52-4FB3-8C41-4D500485B69E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityStorage.DependencyInjection", "EntityStorage.DependencyInjection\EntityStorage.DependencyInjection.csproj", "{9D4BE66E-FA52-4FB3-8C41-4D500485B69E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityStorage.Attributes", "EntityStorage.Attributes\EntityStorage.Attributes.csproj", "{C81805DC-9CE2-4A64-9C8C-A184A610106F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityStorage.Attributes", "EntityStorage.Attributes\EntityStorage.Attributes.csproj", "{C81805DC-9CE2-4A64-9C8C-A184A610106F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityStorage.CollectionsTests", "EntityStorage.CollectionsTests\EntityStorage.CollectionsTests.csproj", "{BC52800C-64CC-4630-9F2C-42C74C9823DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityStorage.CollectionsTests", "EntityStorage.CollectionsTests\EntityStorage.CollectionsTests.csproj", "{BC52800C-64CC-4630-9F2C-42C74C9823DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityStorage.SerializersTests", "EntityStorage.SerializersTests\EntityStorage.SerializersTests.csproj", "{43B55C3A-622F-4E4E-B6FC-6D1A7FCB567F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{BC52800C-64CC-4630-9F2C-42C74C9823DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC52800C-64CC-4630-9F2C-42C74C9823DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC52800C-64CC-4630-9F2C-42C74C9823DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43B55C3A-622F-4E4E-B6FC-6D1A7FCB567F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43B55C3A-622F-4E4E-B6FC-6D1A7FCB567F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43B55C3A-622F-4E4E-B6FC-6D1A7FCB567F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43B55C3A-622F-4E4E-B6FC-6D1A7FCB567F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
