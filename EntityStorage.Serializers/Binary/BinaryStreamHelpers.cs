@@ -2,8 +2,8 @@
 {
     public static class BinaryStreamHelpers
     {
-        public static Dictionary<Type, Delegate> _writersCache = new();
-        public static Dictionary<Type, Delegate> _readersCache = new();
+        private static Dictionary<Type, Delegate> _writersCache = new();
+        private static Dictionary<Type, Delegate> _readersCache = new();
 
         public static Stream Write<T>(this Stream stream, T entity, long offset)
         {
