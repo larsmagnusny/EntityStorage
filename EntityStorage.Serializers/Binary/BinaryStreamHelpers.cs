@@ -5,12 +5,13 @@
         public static Dictionary<Type, Delegate> _writersCache = new();
         public static Dictionary<Type, Delegate> _readersCache = new();
 
-        public static Stream Append<T>(this Stream stream, T entity, long offset)
+        public static Stream Write<T>(this Stream stream, T entity, long offset)
         {
             var entityType = typeof(T);
             if (!_writersCache.TryGetValue(entityType, out var func))
             {
-                // Create materializers
+                func = BinaryMaterializer.CreateWriter<T>();
+                _writersCache.Add(entityType, func);
             }
 
             if (func is null)
@@ -24,9 +25,11 @@
         public static T? Read<T>(Stream stream, long offset = 0)
         {
             var entityType = typeof(T);
+
             if (!_readersCache.TryGetValue(entityType, out var func))
             {
-                // Create materializers
+                func = BinaryMaterializer.CreateReader<T>();
+                _readersCache.Add(entityType, func);
             }
 
             if (func is null)
