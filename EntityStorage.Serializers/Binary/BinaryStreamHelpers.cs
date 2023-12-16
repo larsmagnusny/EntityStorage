@@ -22,7 +22,7 @@
             return stream;
         }
 
-        public static T? Read<T>(Stream stream, long offset = 0)
+        public static T? Read<T>(this Stream stream, long offset = 0)
         {
             var entityType = typeof(T);
 
