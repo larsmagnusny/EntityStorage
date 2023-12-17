@@ -97,17 +97,10 @@ namespace EntityStorage.Collections.Tests
                 collection.Add(new User { Name = line });
             } while (line is not null);
 
-            collection.Where(o => o.Id >= 0 && o.Id < collection.Count);
-
+            var count = 0;
             foreach(var item in collection.Find(o => o.Id >= 0 && o.Id < collection.Count))
             {
-                Assert.IsTrue(collection.FindFirst(o => o.Id == i, out var entity));
-                Assert.AreEqual(i, entity.Id);
-            }
-
-            for(int i = 0; i < collection.Count; i++)
-            {
-                
+                Assert.AreEqual(count++, item.Id);
             }
         }
     }
