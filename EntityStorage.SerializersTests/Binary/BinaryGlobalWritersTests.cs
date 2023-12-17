@@ -23,5 +23,18 @@ namespace EntityStorage.Serializers.Binary.Tests
 
             Assert.AreEqual(1234, r);
         }
+
+        [TestMethod()]
+        public void StringReadWriteTest()
+        {
+            var stream = new MemoryStream();
+
+            BinaryGlobalWriters.WriteString(stream, "1234");
+
+            stream.Position = 0;
+            var r = BinaryGlobalWriters.ReadString(stream);
+
+            Assert.AreEqual("1234", r);
+        }
     }
 }

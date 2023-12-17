@@ -1,4 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Text;
 
 namespace EntityStorage.Serializers.Binary
 {
@@ -24,6 +26,26 @@ namespace EntityStorage.Serializers.Binary
             stream.Read(new Span<byte>(buf, size));
 
             return Unsafe.ReadUnaligned<T>(buf);
+        }
+
+        public unsafe static int WriteString(Stream stream, string value)
+        {
+            var span = MemoryMarshal.Cast<char, byte>(value);
+
+            Write(stream, span.Length);
+            stream.Write(span);
+            return span.Length;
+        }
+
+        public unsafe static string ReadString(Stream stream)
+        {
+            var len = Read<int>(stream);
+
+            var buffer = new byte[len];
+
+            stream.Read(buffer.AsSpan());
+
+            return new string(MemoryMarshal.Cast<byte, char>(buffer));
         }
     }
 }

@@ -5,6 +5,16 @@ namespace EntityStorage.Serializers.Binary
 {
     public static class BinaryMaterializer
     {
+        public static Dictionary<Type, MethodInfo> _typeWriters = new()
+        {
+            { typeof(string), typeof(BinaryGlobalWriters).GetMethod("WriteString") }
+        };
+
+        public static Dictionary<Type, MethodInfo> _typeReader = new()
+        {
+            { typeof(string), typeof(BinaryGlobalWriters).GetMethod("ReadString") }
+        };
+
         public static Action<Stream, long, T> CreateWriter<T>()
         {
             var entityType = typeof(T);
@@ -20,18 +30,22 @@ namespace EntityStorage.Serializers.Binary
 
             foreach (var property in properties)
             {
-                MethodInfo? writeMethod = null;
+                MethodInfo? writeMethod;
                 if (property.PropertyType.IsValueType)
                     writeMethod = genericWriteMethodInfo.MakeGenericMethod(property.PropertyType);
+                else
+                    writeMethod = _typeWriters[property.PropertyType];
 
                 writes.Add(Expression.Call(null, writeMethod, streamVar, Expression.Property(entityVar, property)));
             }
 
             foreach (var field in fields)
             {
-                MethodInfo? writeMethod = null;
+                MethodInfo? writeMethod;
                 if (field.FieldType.IsValueType)
                     writeMethod = genericWriteMethodInfo.MakeGenericMethod(field.FieldType);
+                else
+                    writeMethod = _typeWriters[field.FieldType];
 
                 writes.Add(Expression.Call(null, writeMethod, streamVar, Expression.Field(entityVar, field)));
             }
@@ -59,18 +73,22 @@ namespace EntityStorage.Serializers.Binary
 
             foreach (var property in properties)
             {
-                MethodInfo? readMethod = null;
+                MethodInfo? readMethod;
                 if (property.PropertyType.IsValueType)
                     readMethod = genericReadMethodInfo.MakeGenericMethod(property.PropertyType);
+                else
+                    readMethod = _typeReader[property.PropertyType];
 
                 expressions.Add(Expression.Assign(Expression.Property(retVar, property), Expression.Call(null, readMethod, streamVar)));
             }
 
             foreach (var field in fields)
             {
-                MethodInfo? readMethod = null;
+                MethodInfo? readMethod;
                 if (field.FieldType.IsValueType)
                     readMethod = genericReadMethodInfo.MakeGenericMethod(field.FieldType);
+                else
+                    readMethod = _typeReader[field.FieldType];
 
                 expressions.Add(Expression.Assign(Expression.Field(retVar, field), Expression.Call(null, readMethod, streamVar)));
             }
