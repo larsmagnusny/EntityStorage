@@ -7,12 +7,14 @@ namespace EntityStorage.Serializers.Binary
     {
         public static Dictionary<Type, MethodInfo> _typeWriters = new()
         {
-            { typeof(string), typeof(BinaryGlobalWriters).GetMethod("WriteString") }
+            { typeof(string), typeof(BinaryGlobalWriters).GetMethod("WriteString") },
+            { typeof(DateTime), typeof(BinaryGlobalWriters).GetMethod("WriteDateTime") }
         };
 
         public static Dictionary<Type, MethodInfo> _typeReader = new()
         {
-            { typeof(string), typeof(BinaryGlobalWriters).GetMethod("ReadString") }
+            { typeof(string), typeof(BinaryGlobalWriters).GetMethod("ReadString") },
+            { typeof(DateTime), typeof(BinaryGlobalWriters).GetMethod("ReadDateTime") }
         };
 
         public static Action<Stream, long, T> CreateWriter<T>()

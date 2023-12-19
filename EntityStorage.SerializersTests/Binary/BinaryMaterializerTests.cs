@@ -15,6 +15,7 @@ namespace EntityStorage.Serializers.Binary.Tests
         public float Float { get; set; }
         public byte Byte { get; set; }
         public string String { get; set; }
+        public DateTime DateTime { get; set; }
     }
 
     [TestClass()]
@@ -77,7 +78,8 @@ namespace EntityStorage.Serializers.Binary.Tests
                 Int = 1,
                 Float = 1.23f,
                 Byte = 12,
-                String = "1234"
+                String = "1234",
+                DateTime = DateTime.Now
             };
 
             var stream = new MemoryStream();
@@ -87,7 +89,7 @@ namespace EntityStorage.Serializers.Binary.Tests
 
             writer(stream, 0, data);
 
-            Assert.AreEqual(4 + 4 + 1 + 8 + 4, stream.Length);
+            Assert.AreEqual(4 + 4 + 1 + 8 + 4 + 8, stream.Length);
         }
 
         [TestMethod()]
@@ -98,7 +100,8 @@ namespace EntityStorage.Serializers.Binary.Tests
                 Int = 1,
                 Float = 1.23f,
                 Byte = 12,
-                String = "1234"
+                String = "1234",
+                DateTime = DateTime.Now
             };
 
             var stream = new MemoryStream();
@@ -118,6 +121,7 @@ namespace EntityStorage.Serializers.Binary.Tests
             Assert.AreEqual(data.Float, ret.Float);
             Assert.AreEqual(data.Byte, ret.Byte);
             Assert.AreEqual(data.String, ret.String);
+            Assert.AreEqual(data.DateTime, ret.DateTime);
         }
     }
 }

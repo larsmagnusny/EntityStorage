@@ -36,5 +36,20 @@ namespace EntityStorage.Serializers.Binary.Tests
 
             Assert.AreEqual("1234", r);
         }
+
+        [TestMethod()]
+        public void DateTimeReadWriteTest()
+        {
+            var stream = new MemoryStream();
+
+            var dt = DateTime.Now;
+
+            BinaryGlobalWriters.WriteDateTime(stream, dt);
+
+            stream.Position = 0;
+            var r = BinaryGlobalWriters.ReadDateTime(stream);
+
+            Assert.AreEqual(dt, r);
+        }
     }
 }

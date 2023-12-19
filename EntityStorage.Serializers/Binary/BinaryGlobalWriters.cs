@@ -47,5 +47,16 @@ namespace EntityStorage.Serializers.Binary
 
             return new string(MemoryMarshal.Cast<byte, char>(buffer));
         }
+
+        public static int WriteDateTime(Stream stream, DateTime value)
+        {
+            return Write(stream, value.ToBinary());
+        }
+
+        public static DateTime ReadDateTime(Stream stream)
+        {
+            var val = Read<long>(stream);
+            return DateTime.FromBinary(val);
+        }
     }
 }
