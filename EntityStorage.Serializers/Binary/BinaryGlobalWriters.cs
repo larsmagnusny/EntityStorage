@@ -58,5 +58,25 @@ namespace EntityStorage.Serializers.Binary
             var val = Read<long>(stream);
             return DateTime.FromBinary(val);
         }
+
+        public unsafe static int WriteGuid(Stream stream, Guid value)
+        {
+            var bytes = stackalloc byte[16];
+            var span = new Span<byte>(bytes, 16);
+            value.TryWriteBytes(span);
+
+            stream.Write(span);
+
+            return 16;
+        }
+
+        public unsafe static Guid ReadGuid(Stream stream)
+        {
+            var bytes = stackalloc byte[16];
+            var span = new Span<byte>(bytes, 16);
+            stream.Read(span);
+
+            return new Guid(span);
+        }
     }
 }

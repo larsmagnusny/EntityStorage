@@ -8,13 +8,15 @@ namespace EntityStorage.Serializers.Binary
         public static Dictionary<Type, MethodInfo> _typeWriters = new()
         {
             { typeof(string), typeof(BinaryGlobalWriters).GetMethod("WriteString") },
-            { typeof(DateTime), typeof(BinaryGlobalWriters).GetMethod("WriteDateTime") }
+            { typeof(DateTime), typeof(BinaryGlobalWriters).GetMethod("WriteDateTime") },
+            { typeof(Guid), typeof(BinaryGlobalWriters).GetMethod("WriteGuid") }
         };
 
         public static Dictionary<Type, MethodInfo> _typeReader = new()
         {
             { typeof(string), typeof(BinaryGlobalWriters).GetMethod("ReadString") },
-            { typeof(DateTime), typeof(BinaryGlobalWriters).GetMethod("ReadDateTime") }
+            { typeof(DateTime), typeof(BinaryGlobalWriters).GetMethod("ReadDateTime") },
+            { typeof(Guid), typeof(BinaryGlobalWriters).GetMethod("ReadGuid") }
         };
 
         public static Action<Stream, long, T> CreateWriter<T>()
